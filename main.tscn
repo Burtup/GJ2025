@@ -100,14 +100,13 @@ shape = SubResource("RectangleShape2D_5vw27")
 [node name="Reja_3" type="CollisionShape2D" parent="Colisiones/Zona Verde/1"]
 position = Vector2(-279.942, 220.394)
 rotation = 0.60912
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_kek77")
 
 [node name="Pilar_1" type="CollisionShape2D" parent="Colisiones/Zona Verde/1"]
 position = Vector2(-519.598, 549)
 shape = SubResource("RectangleShape2D_4c57u")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Colisiones/Zona Verde/1"]
+[node name="Arbol_1" type="CollisionShape2D" parent="Colisiones/Zona Verde/1"]
 shape = SubResource("ConvexPolygonShape2D_h2yge")
 
 [node name="2" type="StaticBody2D" parent="Colisiones/Zona Verde"]
@@ -124,7 +123,6 @@ shape = SubResource("RectangleShape2D_dg77c")
 [node name="Reja_Izq" type="CollisionShape2D" parent="Colisiones/Zona Verde/2"]
 position = Vector2(795, 79)
 rotation = -0.616101
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_ycdy4")
 
 [node name="Pilar_1" type="CollisionShape2D" parent="Colisiones/Zona Verde/2"]
