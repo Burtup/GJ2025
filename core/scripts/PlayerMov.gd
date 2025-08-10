@@ -10,15 +10,23 @@ extends CharacterBody2D
 
 # --- Modo de control ---
 enum PlayerMode { TOP_DOWN, PLATFORM }
-var mode := PlayerMode.TOP_DOWN
+@export var start_mode: PlayerMode = PlayerMode.TOP_DOWN
+var mode: PlayerMode
+
+var anim: AnimatedSprite2D
+
+func _ready():
+	anim = $AnimatedSprite2D
+	mode = start_mode
 
 func _physics_process(delta):
 	if mode == PlayerMode.TOP_DOWN:
 		handle_top_down(delta)
 	elif mode == PlayerMode.PLATFORM:
 		handle_platform(delta)
+		_update_animation()
 
-func handle_top_down(delta):
+func handle_top_down(_delta):
 	var direction = Vector2.ZERO
 	direction.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	direction.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
@@ -40,3 +48,21 @@ func handle_platform(delta):
 		velocity.y = jump_force
 
 	move_and_slide()
+
+func _update_animation():
+	var direction = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+	
+	if is_on_floor():
+		if direction == 0:
+			anim.play("idle")
+		else:
+			anim.play("run")
+	else:
+		if velocity.y < 0:
+			anim.play("jump")
+		else:
+			anim.play("fall")
+
+	# Flip horizontal
+	if direction != 0:
+		anim.flip_h = direction < 0
