@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://db1733lfauky7"]
+
+[ext_resource type="Texture2D" uid="uid://bjdltbvjdnjij" path="res://Character/Imagen_de_WhatsApp_2025-08-09_a_las_15.55.19_92e6b3b2-removebg-preview.png" id="1_13ilo"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u17fc"]
+radius = 88.0
+height = 366.0
+
+[node name="Empanada" type="CharacterBody2D"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+light_mask = 3
+visibility_layer = 3
+texture = ExtResource("1_13ilo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 53)
+shape = SubResource("CapsuleShape2D_u17fc")

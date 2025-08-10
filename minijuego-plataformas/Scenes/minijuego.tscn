@@ -1,0 +1,117 @@
+[gd_scene load_steps=11 format=3 uid="uid://cc83r6b0fy55"]
+
+[ext_resource type="Script" uid="uid://kptehs8sysj1" path="res://Script/camera.gd" id="1_q8iqf"]
+[ext_resource type="Texture2D" uid="uid://ceubs3hhx0l54" path="res://Titles/background 1/Imagen de WhatsApp 2025-08-09 a las 19.58.37_b77037bb.jpg" id="1_sjxlo"]
+[ext_resource type="PackedScene" uid="uid://b21j40v77oohh" path="res://Scenes/Suelo.tscn" id="1_wjeg2"]
+[ext_resource type="PackedScene" uid="uid://c6yy7nf24kd8k" path="res://Scenes/Plataforma.tscn" id="2_av6go"]
+[ext_resource type="PackedScene" uid="uid://c4xivs5h1oo77" path="res://Scenes/Plataforma pequeña.tscn" id="3_q8iqf"]
+[ext_resource type="PackedScene" uid="uid://db1733lfauky7" path="res://Scenes/Empanada - Personaje.tscn" id="4_av6go"]
+[ext_resource type="Script" uid="uid://x786fp0ip04m" path="res://Script/empanada_personaje.gd" id="6_ado57"]
+[ext_resource type="Texture2D" uid="uid://dcp0efaa71gyf" path="res://Titles/Decoracion/Ventana.png" id="7_qq3e3"]
+[ext_resource type="Script" uid="uid://c6jy61j3dnc7q" path="res://Script/area_2d.gd" id="9_sjxlo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sjxlo"]
+size = Vector2(1336, 18)
+
+[node name="Minijuego" type="Node2D"]
+
+[node name="Fondo" type="Node2D" parent="."]
+
+[node name="Torre del reloj" type="Sprite2D" parent="Fondo"]
+position = Vector2(436, -1176)
+scale = Vector2(3.07488, 3.40741)
+texture = ExtResource("1_sjxlo")
+
+[node name="Suelo" type="Node2D" parent="."]
+position = Vector2(577, 637)
+
+[node name="StaticBody2D" parent="Suelo" instance=ExtResource("1_wjeg2")]
+position = Vector2(-181, 5)
+
+[node name="StaticBody2D" parent="Suelo/StaticBody2D" instance=ExtResource("1_wjeg2")]
+position = Vector2(192, 0)
+
+[node name="StaticBody2D2" parent="Suelo/StaticBody2D" instance=ExtResource("1_wjeg2")]
+position = Vector2(384, 0)
+
+[node name="Death Zone" type="Area2D" parent="Suelo"]
+position = Vector2(-577, -637)
+script = ExtResource("9_sjxlo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Suelo/Death Zone"]
+position = Vector2(636, 679)
+shape = SubResource("RectangleShape2D_sjxlo")
+debug_color = Color(0.871799, 0.226102, 0.664138, 0.42)
+
+[node name="Plataformas" type="Node2D" parent="."]
+
+[node name="StaticBody2D7" parent="Plataformas" instance=ExtResource("3_q8iqf")]
+position = Vector2(256, -2112)
+
+[node name="StaticBody2D5" parent="Plataformas" instance=ExtResource("3_q8iqf")]
+position = Vector2(448, -640)
+
+[node name="StaticBody2D2" parent="Plataformas" instance=ExtResource("2_av6go")]
+position = Vector2(1000, 448)
+
+[node name="StaticBody2D3" parent="Plataformas" instance=ExtResource("2_av6go")]
+position = Vector2(640, -128)
+
+[node name="StaticBody2D4" parent="Plataformas" instance=ExtResource("2_av6go")]
+position = Vector2(968, -1592)
+
+[node name="StaticBody2D6" parent="Plataformas" instance=ExtResource("2_av6go")]
+position = Vector2(648, 192)
+
+[node name="StaticBody2D8" parent="Plataformas" instance=ExtResource("3_q8iqf")]
+position = Vector2(152, -2856)
+
+[node name="StaticBody2D9" parent="Plataformas" instance=ExtResource("3_q8iqf")]
+position = Vector2(1024, 64)
+
+[node name="StaticBody2D" parent="Plataformas" instance=ExtResource("2_av6go")]
+position = Vector2(264, 448)
+
+[node name="StaticBody2D10" parent="Plataformas" instance=ExtResource("3_q8iqf")]
+position = Vector2(256, -128)
+
+[node name="StaticBody2D11" parent="Plataformas" instance=ExtResource("2_av6go")]
+position = Vector2(64, -384)
+
+[node name="StaticBody2D12" parent="Plataformas" instance=ExtResource("3_q8iqf")]
+position = Vector2(576, -1856)
+
+[node name="StaticBody2D13" parent="Plataformas" instance=ExtResource("3_q8iqf")]
+position = Vector2(640, -888)
+
+[node name="StaticBody2D14" parent="Plataformas" instance=ExtResource("1_wjeg2")]
+position = Vector2(480, -1600)
+
+[node name="StaticBody2D15" parent="Plataformas" instance=ExtResource("2_av6go")]
+position = Vector2(608, -1344)
+
+[node name="StaticBody2D16" parent="Plataformas" instance=ExtResource("3_q8iqf")]
+position = Vector2(320, -1088)
+
+[node name="Ventana" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(528, -1672)
+scale = Vector2(1.82353, 1.87209)
+texture = ExtResource("7_qq3e3")
+
+[node name="Empanada" parent="." groups=["Player"] instance=ExtResource("4_av6go")]
+position = Vector2(640, 600)
+scale = Vector2(0.1375, 0.125786)
+collision_layer = 1
+script = ExtResource("6_ado57")
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("object_to_follow")]
+position = Vector2(642, 599)
+scale = Vector2(1.53981, 0.127326)
+limit_left = 0
+limit_right = 1200
+limit_bottom = 740
+script = ExtResource("1_q8iqf")
+object_to_follow = NodePath("../Empanada")
+
+[connection signal="body_entered" from="Suelo/Death Zone" to="Suelo/Death Zone" method="_on_body_entered"]

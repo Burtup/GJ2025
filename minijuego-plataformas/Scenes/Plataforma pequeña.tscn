@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4xivs5h1oo77"]
+
+[ext_resource type="Texture2D" uid="uid://bvt6d1kv72x4t" path="res://Titles/Plataformas/Plataforma pequeña.png" id="1_qysfc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bhxv3"]
+size = Vector2(26, 4.5)
+
+[node name="StaticBody2D" type="StaticBody2D"]
+scale = Vector2(1.19463, 1)
+
+[node name="PlataformaPequeña" type="Sprite2D" parent="."]
+texture = ExtResource("1_qysfc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5.25)
+shape = SubResource("RectangleShape2D_bhxv3")
