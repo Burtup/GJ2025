@@ -16,6 +16,10 @@ func _ready() -> void:
 	$Actions.hide()
 	display_text("La estatua te reta a un duelo")
 	await textbox_closed
+	display_text("Dale click en el botón de comer\nlo más rápido que puedas")
+	await textbox_closed
+	#display_text("También puedes sabotearlo para que no pueda comer por un periodo de tiempo o huir de la batalla si así lo prefiers")
+	#await textbox_closed
 	$Actions.show()
 	
 	
