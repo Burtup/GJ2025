@@ -1,0 +1,475 @@
+[gd_scene load_steps=19 format=3 uid="uid://ddbcaqxds23wu"]
+
+[ext_resource type="Script" uid="uid://d0aml7r1o4d8a" path="res://historias/1/minijuegoComerEmpanadas/ScriptsminigameComerEmpanadas/control.gd" id="1_50hm1"]
+[ext_resource type="Resource" uid="uid://cj41i8ky2ba2m" path="res://historias/1/minijuegoComerEmpanadas/ScriptsminigameComerEmpanadas/Statue.tres" id="2_ap5a4"]
+[ext_resource type="Texture2D" uid="uid://bpjwioot466t1" path="res://historias/1/minijuegoComerEmpanadas/Materials/bgpixelpark2.png" id="3_cq6td"]
+[ext_resource type="Texture2D" uid="uid://b2sbxri5udryi" path="res://historias/1/minijuegoComerEmpanadas/Materials/Characters/EstatuaCaldas-Photoroom.png" id="4_cq6td"]
+[ext_resource type="Texture2D" uid="uid://bvblcx2wq3fhe" path="res://historias/1/minijuegoComerEmpanadas/Materials/particulasempanada2.png" id="5_akdcu"]
+[ext_resource type="Texture2D" uid="uid://cqfed824yht8c" path="res://historias/1/minijuegoComerEmpanadas/Materials/Characters/banana.jpg" id="6_5om1a"]
+[ext_resource type="FontFile" uid="uid://dfomulgh6cv80" path="res://historias/1/minijuegoComerEmpanadas/Materials/fonts/NESCyrillic.ttf" id="6_ap5a4"]
+[ext_resource type="AudioStream" uid="uid://c4s2yjp8jkv73" path="res://historias/1/minijuegoComerEmpanadas/Materials/Ducking_Ducker.mp3" id="8_cq6td"]
+[ext_resource type="Texture2D" uid="uid://ccvykdi0uimcr" path="res://historias/1/minijuegoComerEmpanadas/Materials/empanadacomida3.png" id="9_8lwj0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_62e2m"]
+bg_color = Color(0.06, 0.06, 0.06, 0.709804)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qtu10"]
+bg_color = Color(1, 0.12549, 0.294118, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0505108, 0.0505108, 0.0505107, 1)
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ee4bf"]
+bg_color = Color(0, 0.76, 0.0633333, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ap5a4"]
+bg_color = Color(0.103744, 0.103744, 0.103743, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="Animation" id="Animation_ap5a4"]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Textbox/Ticker:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2m1iu"]
+resource_name = "enemy_damage"
+length = 0.3
+
+[sub_resource type="Animation" id="Animation_8lwj0"]
+resource_name = "enter"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Textbox/Ticker:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_akdcu"]
+resource_name = "player_damaged"
+length = 0.3
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_akdcu"]
+_data = {
+&"RESET": SubResource("Animation_ap5a4"),
+&"enemy_damage": SubResource("Animation_2m1iu"),
+&"enter": SubResource("Animation_8lwj0"),
+&"player_damaged": SubResource("Animation_akdcu")
+}
+
+[node name="Battle" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_50hm1")
+enemy = ExtResource("2_ap5a4")
+metadata/_edit_lock_ = true
+
+[node name="BG" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_cq6td")
+expand_mode = 3
+metadata/_edit_lock_ = true
+
+[node name="Enemy" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 921.0
+offset_top = 57.0
+offset_right = 1209.0
+offset_bottom = 410.0
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = ExtResource("4_cq6td")
+expand_mode = 1
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Enemy"]
+position = Vector2(119, 50)
+emitting = false
+amount = 7
+texture = ExtResource("5_akdcu")
+one_shot = true
+
+[node name="Player" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 137.0
+offset_top = 318.0
+offset_right = 457.0
+offset_bottom = 638.0
+texture = ExtResource("6_5om1a")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Player"]
+position = Vector2(204, 101)
+emitting = false
+amount = 7
+texture = ExtResource("5_akdcu")
+one_shot = true
+
+[node name="EnemyPanel" type="Panel" parent="."]
+layout_mode = 1
+offset_left = 350.0
+offset_top = 35.0
+offset_right = 940.0
+offset_bottom = 105.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_62e2m")
+
+[node name="EnemyData" type="VBoxContainer" parent="EnemyPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="EnemyPanel/EnemyData"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_ap5a4")
+theme_override_font_sizes/font_size = 30
+text = "Estatua"
+horizontal_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="EnemyPanel/EnemyData"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_styles/background = SubResource("StyleBoxFlat_qtu10")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ee4bf")
+max_value = 50.0
+step = 1.0
+value = 25.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="EnemyPanel/EnemyData/ProgressBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.0
+offset_top = -11.5
+offset_right = 37.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_ap5a4")
+theme_override_font_sizes/font_size = 30
+text = "25/50"
+
+[node name="PlayerPanel" type="Panel" parent="."]
+layout_mode = 1
+offset_left = 633.0
+offset_top = 451.0
+offset_right = 1223.0
+offset_bottom = 521.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_62e2m")
+
+[node name="PlayerData" type="VBoxContainer" parent="PlayerPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="PlayerPanel/PlayerData"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_ap5a4")
+theme_override_font_sizes/font_size = 30
+text = "Empanadin"
+horizontal_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="PlayerPanel/PlayerData"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_styles/background = SubResource("StyleBoxFlat_qtu10")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ee4bf")
+max_value = 50.0
+step = 1.0
+value = 25.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="PlayerPanel/PlayerData/ProgressBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.0
+offset_top = -11.5
+offset_right = 37.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_ap5a4")
+theme_override_font_sizes/font_size = 30
+text = "25/50"
+
+[node name="Actions" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -562.5
+offset_top = -105.0
+offset_right = 562.5
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Actions"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Attack" type="Button" parent="Actions/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("6_ap5a4")
+theme_override_font_sizes/font_size = 50
+text = "Comer"
+
+[node name="Defend" type="Button" parent="Actions/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("6_ap5a4")
+theme_override_font_sizes/font_size = 50
+text = "sabotear"
+
+[node name="Run" type="Button" parent="Actions/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("6_ap5a4")
+theme_override_font_sizes/font_size = 50
+text = "HUIR"
+
+[node name="Textbox" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -564.0
+offset_top = -137.0
+offset_right = 565.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ap5a4")
+
+[node name="Label" type="Label" parent="Textbox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_ap5a4")
+theme_override_font_sizes/font_size = 60
+text = "La estatua te reta a un duelo"
+
+[node name="Ticker" type="Label" parent="Textbox"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("6_ap5a4")
+theme_override_font_sizes/font_size = 50
+text = "ENTER"
+
+[node name="PlayerAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_akdcu")
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.4
+autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_cq6td")
+autoplay = true
+
+[node name="TextureRect8" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 451.0
+offset_top = 343.0
+offset_right = 576.0
+offset_bottom = 468.0
+texture = ExtResource("9_8lwj0")
+expand_mode = 1
+
+[node name="TextureRect9" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 487.0
+offset_top = 339.0
+offset_right = 612.0
+offset_bottom = 464.0
+texture = ExtResource("9_8lwj0")
+expand_mode = 1
+
+[node name="TextureRect10" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 534.0
+offset_top = 334.0
+offset_right = 659.0
+offset_bottom = 459.0
+texture = ExtResource("9_8lwj0")
+expand_mode = 1
+
+[node name="TextureRect11" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 574.0
+offset_top = 326.0
+offset_right = 699.0
+offset_bottom = 451.0
+texture = ExtResource("9_8lwj0")
+expand_mode = 1
+
+[node name="TextureRect12" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 624.0
+offset_top = 324.0
+offset_right = 749.0
+offset_bottom = 449.0
+texture = ExtResource("9_8lwj0")
+expand_mode = 1
+
+[node name="TextureRect13" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 674.0
+offset_top = 324.0
+offset_right = 799.0
+offset_bottom = 449.0
+texture = ExtResource("9_8lwj0")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 478.0
+offset_top = 366.0
+offset_right = 603.0
+offset_bottom = 491.0
+texture = ExtResource("9_8lwj0")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 522.0
+offset_top = 361.0
+offset_right = 647.0
+offset_bottom = 486.0
+texture = ExtResource("9_8lwj0")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 573.0
+offset_top = 361.0
+offset_right = 698.0
+offset_bottom = 486.0
+texture = ExtResource("9_8lwj0")
+expand_mode = 1
+
+[node name="TextureRect4" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 617.0
+offset_top = 359.0
+offset_right = 742.0
+offset_bottom = 484.0
+texture = ExtResource("9_8lwj0")
+expand_mode = 1
+
+[node name="TextureRect5" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 653.0
+offset_top = 359.0
+offset_right = 778.0
+offset_bottom = 484.0
+texture = ExtResource("9_8lwj0")
+expand_mode = 1
+
+[node name="TextureRect6" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 689.0
+offset_top = 360.0
+offset_right = 814.0
+offset_bottom = 485.0
+texture = ExtResource("9_8lwj0")
+expand_mode = 1
+
+[node name="TextureRect7" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 444.0
+offset_top = 368.0
+offset_right = 569.0
+offset_bottom = 493.0
+texture = ExtResource("9_8lwj0")
+expand_mode = 1
+
+[connection signal="pressed" from="Actions/HBoxContainer/Attack" to="." method="_on_attack_pressed"]
+[connection signal="pressed" from="Actions/HBoxContainer/Defend" to="." method="_on_defend_pressed"]
+[connection signal="pressed" from="Actions/HBoxContainer/Run" to="." method="_on_run_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

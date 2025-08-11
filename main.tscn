@@ -1,9 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://bfh45x74q1c1o"]
+[gd_scene load_steps=22 format=3 uid="uid://bfh45x74q1c1o"]
 
 [ext_resource type="Texture2D" uid="uid://c7bhqdmthaya3" path="res://core/scenes/Escenario.png" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://buf5fdlnarjvh" path="res://core/scripts/PlayerMov.gd" id="2_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://dj8yjkrpj2h4s" path="res://core/player/Sprite EMpanada.png" id="2_h2yge"]
 [ext_resource type="Script" uid="uid://rmyieqku5k8p" path="res://core/scripts/AreaSwap.gd" id="4_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://dunuh1p6yvqek" path="res://core/assets/Tore Reloj.png" id="5_lquwl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0xm2m"]
 radius = 4.99998
@@ -51,7 +52,11 @@ size = Vector2(6415.5, 65.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vivmo"]
 size = Vector2(135, 96)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2cqfq"]
+size = Vector2(2691.55, 2167.35)
+
 [node name="Main" type="Node2D"]
+script = ExtResource("4_1bvp3")
 
 [node name="Fondo" type="Sprite2D" parent="."]
 position = Vector2(1183, 128)
@@ -162,3 +167,55 @@ script = ExtResource("4_1bvp3")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SwapArea"]
 position = Vector2(206, -42)
 shape = SubResource("RectangleShape2D_vivmo")
+
+[node name="Minis" type="Node2D" parent="."]
+position = Vector2(2592, 767)
+scale = Vector2(0.0667739, 0.0668131)
+
+[node name="ToreReloj" type="Sprite2D" parent="Minis"]
+position = Vector2(14826.2, -11554.6)
+scale = Vector2(0.799925, 0.799456)
+texture = ExtResource("5_lquwl")
+
+[node name="Area2D" type="Area2D" parent="Minis/ToreReloj"]
+position = Vector2(-18534.4, 14453.1)
+scale = Vector2(1.25012, 1.25085)
+script = ExtResource("4_1bvp3")
+target_scene_path = "uid://ig55fnu8ws4w"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Minis/ToreReloj/Area2D"]
+position = Vector2(14871.1, -11015.8)
+scale = Vector2(0.799925, 0.799456)
+shape = SubResource("RectangleShape2D_2cqfq")
+
+[node name="ToreReloj2" type="Sprite2D" parent="Minis"]
+position = Vector2(5870.56, -7992.45)
+scale = Vector2(0.973554, 0.973554)
+texture = ExtResource("5_lquwl")
+
+[node name="Area2D" type="Area2D" parent="Minis/ToreReloj2"]
+position = Vector2(-18534.4, 14453.1)
+scale = Vector2(1.25012, 1.25085)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Minis/ToreReloj2/Area2D"]
+position = Vector2(14856.1, -11015.8)
+scale = Vector2(0.799925, 0.799456)
+shape = SubResource("RectangleShape2D_2cqfq")
+
+[node name="Batalla" type="Sprite2D" parent="Minis"]
+texture = ExtResource("5_lquwl")
+
+[node name="Area2D" type="Area2D" parent="Minis/Batalla"]
+position = Vector2(-18534.4, 14453.1)
+scale = Vector2(1.25012, 1.25085)
+script = ExtResource("4_1bvp3")
+target_scene_path = "uid://ddbcaqxds23wu"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Minis/Batalla/Area2D"]
+position = Vector2(14856.1, -11015.8)
+scale = Vector2(0.799925, 0.799456)
+shape = SubResource("RectangleShape2D_2cqfq")
+
+[connection signal="body_entered" from="Minis/ToreReloj/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Minis/ToreReloj2/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Minis/Batalla/Area2D" to="." method="_on_area_2d_body_entered"]

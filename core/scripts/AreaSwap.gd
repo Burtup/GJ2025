@@ -16,3 +16,7 @@ func _on_body_entered(body: Node) -> void:
 			get_tree().change_scene_to_file(target_scene_path)
 		else:
 			push_error("AreaSwap: escena objetivo no encontrada: %s" % target_scene_path)
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.

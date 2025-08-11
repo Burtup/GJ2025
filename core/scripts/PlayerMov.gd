@@ -1,11 +1,11 @@
 extends CharacterBody2D
 
 # --- Variables comunes ---
-@export var speed := 400.0
+@export var speed := 600.0
 
 # --- Variables para modo plataforma ---
 @export var gravity := 500.0
-@export var jump_force := -300.0
+@export var jump_force := -357.0
 @export var max_fall_speed := 1500.0
 
 # --- Modo de control ---
