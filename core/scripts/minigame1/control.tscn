@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://d0aml7r1o4d8a" path="res://core/scripts/minigame1/control.gd" id="1_50hm1"]
 [ext_resource type="Resource" uid="uid://cj41i8ky2ba2m" path="res://core/scripts/minigame1/Statue.tres" id="2_ap5a4"]
 [ext_resource type="Texture2D" uid="uid://bpjwioot466t1" path="res://Materials/bgpixelpark2.png" id="3_cq6td"]
-[ext_resource type="Texture2D" uid="uid://bqwqkng86w4h" path="res://icon.svg" id="4_akdcu"]
 [ext_resource type="Texture2D" uid="uid://b2sbxri5udryi" path="res://Materials/Characters/EstatuaCaldas-Photoroom.png" id="4_cq6td"]
 [ext_resource type="Texture2D" uid="uid://bvblcx2wq3fhe" path="res://Materials/particulasempanada2.png" id="5_akdcu"]
 [ext_resource type="FontFile" uid="uid://dfomulgh6cv80" path="res://Materials/fonts/NESCyrillic.ttf" id="6_ap5a4"]
+[ext_resource type="Texture2D" uid="uid://ch7gob0n40eok" path="res://core/player/playerempanada.png" id="6_g0ki2"]
 [ext_resource type="AudioStream" uid="uid://c4s2yjp8jkv73" path="res://Materials/Ducking_Ducker.mp3" id="8_cq6td"]
 [ext_resource type="Texture2D" uid="uid://ccvykdi0uimcr" path="res://Materials/empanadacomida3.png" id="9_8lwj0"]
 
@@ -124,14 +124,14 @@ one_shot = true
 
 [node name="Player" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 234.0
-offset_top = 406.0
-offset_right = 362.0
-offset_bottom = 534.0
-texture = ExtResource("4_akdcu")
+offset_left = 137.0
+offset_top = 318.0
+offset_right = 457.0
+offset_bottom = 638.0
+texture = ExtResource("6_g0ki2")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="Player"]
-position = Vector2(141, 48)
+position = Vector2(204, 101)
 emitting = false
 amount = 7
 texture = ExtResource("5_akdcu")
