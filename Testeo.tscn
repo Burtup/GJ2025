@@ -394,7 +394,8 @@ start_mode = 1
 position = Vector2(205, 140)
 sprite_frames = SubResource("SpriteFrames_xcfxs")
 animation = &"run"
-speed_scale = 4.0
+frame_progress = 0.239779
+speed_scale = 3.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2(205.5, 145)

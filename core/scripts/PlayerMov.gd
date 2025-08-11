@@ -4,9 +4,9 @@ extends CharacterBody2D
 @export var speed := 400.0
 
 # --- Variables para modo plataforma ---
-@export var gravity := 600.0
-@export var jump_force := -600.0
-@export var max_fall_speed := 1000.0
+@export var gravity := 500.0
+@export var jump_force := -300.0
+@export var max_fall_speed := 1500.0
 
 # --- Modo de control ---
 enum PlayerMode { TOP_DOWN, PLATFORM }
